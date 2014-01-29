@@ -54,7 +54,19 @@ function setCookie(){
 
 // gets contents of previous list from cookie and puts in list
 function getCookie(){
-	var items = document.cookie.split("=")[1].split("|");
+	// get items cookie
+	var items = "";
+	var name = "items=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++) {
+		var c = ca[i].trim();
+	  	if (c.indexOf(name) == 0) {
+	  		var items = c.substring(name.length, c.length);
+	  	}
+	}
+
+	// add each item to list
+	items = items.split("|");
 	for (var i = 0; i < items.length; i++){
 		addItem(items[i], false);
 	}
